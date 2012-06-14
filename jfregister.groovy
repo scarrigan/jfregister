@@ -1,18 +1,23 @@
-
+/*
+ * Groovy Script that registers the set memberName for the latest JForum event
+ * It stores the latest meeting number in a file to prevent spamming the site
+ *
+ * Only works on nix based systems since curl is required 
+ *   
+**/
 
 JForum jforum = new JForum()
 Attendee attendee = new Attendee()
+String memberName = "foobar@hotmail.com"
 
 Integer latestMeetingNumber = jforum.latestMeetingNumber
 if (attendee.latestAttendedMeetingNumber >= latestMeetingNumber) {
     println "You have already signed up for the latest JForum meeting number " + latestMeetingNumber
 } else {
     println "You need to sign up for the latest JForum meeting number " + latestMeetingNumber
-    // TODO : Sign up method
+    println jforum.registerForMeeting(memberName,latestMeetingNumber)
     attendee.latestAttendedMeetingNumber = latestMeetingNumber    
 }
-
-
 
 public class Attendee {
 
@@ -61,6 +66,11 @@ public class JForum {
     
     private String fetchWebpageData() {
         new URL(JFORUM_URL).text    
+    }
+    
+    public String registerForMeeting(String memberName, Integer meetingNumber) {
+        def command = "curl -d email="+memberName+"&meeting="+meetingNumber.toString() + "  http://www.jforum.se/jf/?meeting="+meetingNumber.toString() 
+        command.execute().text     
     }
 
     public Integer getLatestMeetingNumber() {
