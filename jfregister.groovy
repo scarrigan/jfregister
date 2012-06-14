@@ -28,7 +28,7 @@ public class Attendee {
     public String readFromFile() {
         File file = new File(DATA_FILE) 
         if (!file.exists()) {
-            return 0;
+            return null
         } 
         file.text
     }
