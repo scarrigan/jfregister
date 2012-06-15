@@ -9,7 +9,7 @@
 
 JForum jforum = new JForum()
 Attendee attendee = new Attendee()
-String memberName = "foobarforever@hotmail.com"
+String memberName = "carrigan.steve@gmail.com"
 
 Integer latestMeetingNumber = jforum.latestMeetingNumber
 
