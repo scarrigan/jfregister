@@ -12,17 +12,22 @@ Attendee attendee = new Attendee()
 String memberName = "foobarforever@hotmail.com"
 
 Integer latestMeetingNumber = jforum.latestMeetingNumber
+
 if (attendee.latestAttendedMeetingNumber >= latestMeetingNumber) {
+
     println "You have already signed up for the latest JForum meeting number " + latestMeetingNumber
+
 } else {
+
     jforum.registerForMeeting(memberName,latestMeetingNumber)
     println "You are signed up for JForum meeting number " + latestMeetingNumber
     attendee.latestAttendedMeetingNumber = latestMeetingNumber    
+
 }
 
 public class Attendee {
 
-    private static final String DATA_FILE = "./meetingnumber.txt"
+    private static final String DATA_FILE = ".meetingnumber"
     
     private Integer latestAttendedMeetingNumber
     
@@ -56,7 +61,7 @@ public class Attendee {
 public class JForum {
 
     private static final String JFORUM_URL = "http://www.jforum.se"
-    private static final Integer GROUP_POSITION = 1;
+    private static final Integer GROUP_POSITION = 1
     
     private String jforumData
     private Integer latestMeetingNumber
