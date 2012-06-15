@@ -1,0 +1,1 @@
+0 * * * * groovy ~/Projects/jfregister/jfregister.groovy >> ~/Library/Logs/JForum/register.log
