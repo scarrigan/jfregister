@@ -15,12 +15,12 @@ Integer latestMeetingNumber = jforum.latestMeetingNumber
 
 if (attendee.latestAttendedMeetingNumber >= latestMeetingNumber) {
 
-    println "You have already signed up for the latest JForum meeting number " + latestMeetingNumber
+    println new Date().toString() + " - You have already signed up for the latest JForum meeting number " + latestMeetingNumber
 
 } else {
 
     jforum.registerForMeeting(memberName,latestMeetingNumber)
-    println "You are signed up for JForum meeting number " + latestMeetingNumber
+    println new Date().toString() + " - You are signed up for JForum meeting number " + latestMeetingNumber
     attendee.latestAttendedMeetingNumber = latestMeetingNumber    
 
 }
