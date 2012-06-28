@@ -13,6 +13,10 @@ String memberName = "carrigan.steve@gmail.com"
 
 Integer latestMeetingNumber = jforum.latestMeetingNumber
 
+if (latestMeetingNumber == -1) {
+    return
+}
+
 if (attendee.latestAttendedMeetingNumber >= latestMeetingNumber) {
 
     println new Date().toString() + " - You have already signed up for the latest JForum meeting number " + latestMeetingNumber
@@ -86,7 +90,9 @@ public class JForum {
                meetingNumber = it[GROUP_POSITION]
             }
         }
-        meetingNumber.toInteger()        
+        if (meetingNumber != null)
+            meetingNumber.toInteger()
+        -1       
     }
 
 }
