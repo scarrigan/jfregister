@@ -14,6 +14,7 @@ String memberName = "carrigan.steve@gmail.com"
 Integer latestMeetingNumber = jforum.latestMeetingNumber
 
 if (latestMeetingNumber == -1) {
+    println new Date().toString() + " - There are no meetings at this date"
     return
 }
 
