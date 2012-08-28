@@ -14,7 +14,11 @@ String memberName = "carrigan.steve@gmail.com"
 Integer latestMeetingNumber = jforum.latestMeetingNumber
 
 if (latestMeetingNumber == -1) {
+
     println new Date().toString() + " - There are no meetings at this date"
+
+    growlNotify("tools","No meetings available (JForum)",new Date().toString())   
+    
     return
 }
 
@@ -22,12 +26,42 @@ if (attendee.latestAttendedMeetingNumber >= latestMeetingNumber) {
 
     println new Date().toString() + " - You have already signed up for the latest JForum meeting number " + latestMeetingNumber
 
+    growlNotify("tools","Already signed up (JForum)",new Date().toString())   
+
 } else {
 
     jforum.registerForMeeting(memberName,latestMeetingNumber)
     println new Date().toString() + " - You are signed up for JForum meeting number " + latestMeetingNumber
-    attendee.latestAttendedMeetingNumber = latestMeetingNumber    
+    attendee.latestAttendedMeetingNumber = latestMeetingNumber
+    
+    growlNotify("tools","You have signed up (JForum)",new Date().toString())           
 
+}
+
+void growlNotify(category, title, message, Closure clos = null) {
+    def cmd = [
+        "/usr/local/bin/growlnotify",
+        "-n", "Groovy",
+        "--image", "/Users/Shared/groovy-1.8.6/groovy48.png", // Modify 
+        "-d", category,
+        "-m", message,
+        "-t", title,
+    ]
+    if (clos) {
+        cmd << "-w"
+    }
+    def exitValue = execute(cmd)
+    if (isClicked(exitValue)) clos.call()
+}
+
+boolean isClicked(exitValue) {
+    exitValue == 2
+}
+
+int execute(cmd) {
+    def proc = cmd.execute()
+    proc.waitFor()
+    proc.exitValue()
 }
 
 public class Attendee {
