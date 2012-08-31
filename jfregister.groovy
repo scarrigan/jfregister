@@ -39,10 +39,12 @@ if (attendee.latestAttendedMeetingNumber >= latestMeetingNumber) {
 }
 
 void growlNotify(category, title, message, Closure clos = null) {
+    scriptDir = new File(getClass().protectionDomain.codeSource.location.path).parent
+    String iconFile = scriptDir + "/resources/java.png"
     def cmd = [
         "/usr/local/bin/growlnotify",
         "-n", "Groovy",
-        "--image", "/Users/Shared/groovy-1.8.6/groovy48.png", // Modify 
+        "--image", iconFile, 
         "-d", category,
         "-m", message,
         "-t", title,
