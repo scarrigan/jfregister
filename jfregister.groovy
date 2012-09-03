@@ -127,9 +127,10 @@ public class JForum {
                meetingNumber = it[GROUP_POSITION]
             }
         }
-        if (meetingNumber != null)
-            meetingNumber.toInteger()
-        -1       
+        if (meetingNumber == null) {
+            meetingNumber = "-1"
+        }
+        meetingNumber.toInteger()       
     }
 
 }
